@@ -43,7 +43,6 @@ app.get('/', async(req, res) => {
     let dtLast = dtStart
     let allCities = []
     if (dt !== undefined) {
-        console.log("Um dia só")
         try {
             let options = {
                 params: {
@@ -56,7 +55,6 @@ app.get('/', async(req, res) => {
             }
             allCities.push(await getCities(`https://api.brasil.io/dataset/covid19/caso/data/`, options, []))
             let topCities = topTenCities(allCities[0])
-            let tp = topCities.length
             res.status(201).send({ cities: topCities })
             return
         } catch (error) {
@@ -84,8 +82,8 @@ app.get('/', async(req, res) => {
             dtLast.setDate(dtLast.getDate() + 1);
         }
         // console.log("Veio até aqui")
-        //     console.log(allCities.length)
-        // let topCities = topTenCities(allCities[0])
+        console.log(allCities.length)
+        let topCities = topTenCities(allCities[0])
         res.status(200).send({ cities: allCities })
     } catch (error) {
         res.send({ error: error.message, resposta: error.response, message: error.data })

@@ -1,6 +1,6 @@
 function topTenCities(arr) {
     arr.sort((a, b) => {
-        if (a["confirmed_per_100k_inhabitants"] > b["confirmed_per_100k_inhabitants"]) {
+        if (b["confirmed_per_100k_inhabitants"] < a["confirmed_per_100k_inhabitants"]) {
             return -1;
         } else {
             true
